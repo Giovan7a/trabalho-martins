@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Contato</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@2"></script>
+
+  <script src="js/main.js" defer></script>
+</head>
+
+<body>
+
+  <header>
+    <h1>Fale Conosco</h1>
+    <p>Faça sua reserva</p>
+  </header>
+
+  <nav aria-label="Menu principal">
+
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+      ☰
+    </button>
+
+    <ul id="menu-principal" class="menu" aria-hidden="true">
+
+      <li>
+        <button class="menu-close" aria-label="Fechar menu">✕</button>
+      </li>
+
+      <li><a href="index.html" aria-current="page">Início</a></li>
+      <li><a href="quartos.html">Quartos</a></li>
+      <li><a href="contato.html">Contatos</a></li>
+
+    </ul>
+
+  </nav>
+
+<main>
+  <div id="app">
+    <h2>Faleconosco</h2>
+
+    <form_@submit.prevent="enviarFormulario">
+    <input type="text" v-model="nome" placeholder="Seu nome">
+    <input type="email" v-model="email" placeholder="Seu email">
+    <textarea v-model="mensagem" placeholder="Mensagem"></textarea>
+    <button type="submit">Enviar</button>
+    </form>
+
+    <p v-if="erro" class="erro">{{ erro}}</p>
+    <p v-if="sucesso" class="sucesso">Mensagem enviada com
+      sucesso!</p>
+      <!-- LISTA-->
+    <ul v-if="contatos.length >0">
+      <li v-for="contato in contatos">
+      {{ contato.nome }}- {{ contato.email }}
+      </li>
+    </u1>
+  </div>
+</main>
+  <script>
+    new Vue({
+      el:"#app",
+      data: {
+        nome:"",
+        email:"",
+        contatos:[],
+        erro:"",
+        sucesso: false
+      },
+      methods:{
+        enviarFormulario(){
+    // Validacão simples
+          if(this.nome ===""|| this.email ===""|| this.mensagem ===""){  
+            error = "Por favor, preencha todos os campos."; 
+            this.sucesso = false;
+            return;   
+          }
+          this.contatos.push({   
+            nome: this.nome, 
+            email: this.email
+          });
+          this.nome = "";
+          this.email = "";
+          this.mensagem = ""; 
+          this.erro = "";  
+          this.sucesso = "";
+ 
+        }
+
+      }
+
+    });
+  </script>
+</body>
+</html>
